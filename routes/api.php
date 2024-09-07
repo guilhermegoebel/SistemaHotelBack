@@ -1,5 +1,5 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\http\Controllers\ReservaController;
+use App\Http\Controllers\ReservaController;
 
-Route::post('/api/reserva', [ReservaController::class, 'salvar']);
+Route::post('/reserva', [ReservaController::class, 'salvar']);

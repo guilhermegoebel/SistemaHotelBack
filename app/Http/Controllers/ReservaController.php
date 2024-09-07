@@ -7,7 +7,7 @@ use App\Models\Reserva;
 
 class ReservaController extends Controller
 {
-    public function salvar (Request $request) {
+    public function salvar(Request $request) {
         $validatedData = $request->validate ([
             'nome' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
