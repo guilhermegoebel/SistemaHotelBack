@@ -9,6 +9,10 @@ class ReservaController extends Controller
 {
     public function getAll()
     {
-        return Reserva::all();
+        // Pega todas as reservas do banco de dados
+        $reservas = Reserva::all();
+
+        // Retorna a resposta em um JSON
+        return response()->json($reservas);
     }
 }
