@@ -15,4 +15,17 @@ class ReservaController extends Controller
         // Retorna a resposta em um JSON
         return response()->json($reservas);
     }
+
+    public function getById($id)
+    {
+        // Tenta encontrar a reserva com o ID
+        $reserva = Reserva::find($id);
+
+        // Verifica se a reserva foi encontrada
+        if ($reserva) {
+            return response()->json($reserva, 200);
+        } else {
+            return response()->json(['message' => 'Reserva não encontrada'], 404);
+        }
+    }
 }
