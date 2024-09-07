@@ -28,4 +28,20 @@ class ReservaController extends Controller
             return response()->json(['message' => 'Reserva não encontrada'], 404);
         }
     }
+
+    public function delete($id)
+    {
+        // Tenta encontrar a reserva com o ID
+        $reserva = Reserva::find($id);
+
+        // Verifica se a reserva foi encontrada
+        if (!$reserva) {
+            return response()->json(['message' => 'Reserva não encontrada'], 404);
+        }
+
+        // Exclusao logica
+        $reserva->delete();
+
+        return response()->json(['message' => 'Reserva excluída com sucesso'], 200);
+    }
 }
