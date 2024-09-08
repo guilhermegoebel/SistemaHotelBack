@@ -9,6 +9,7 @@ Route::get('/user', function (Request $request) {
 }); //->middleware('auth:sanctum');
 
 Route::post('/reserva', [ReservaController::class, 'salvar']);
+Route::put('/reserva', [ReservaController::class, 'atualizar']);
 
 Route::post('/test', function (Request $request) {
     return response()->json(['message' => 'POST request successful']);
