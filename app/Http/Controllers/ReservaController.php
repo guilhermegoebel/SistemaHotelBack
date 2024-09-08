@@ -16,10 +16,14 @@ class ReservaController extends Controller
         if(!$reserva) {
             return response()->json(['message' => 'ERRO: Reserva não encontrada'], 404);
         } else {
-            $reserva->checkin_confirmado = true;
-            $reserva->save();
+            if($reserva->checkin_confirmado) {
+                return response()->json(['message' => 'Este checkin já foi confirmado.']);
+            } else {
+                $reserva->checkin_confirmado = true;
+                $reserva->save();
+                return response()->json(['message' => 'Checkin confirmado.'], 200);
+            }
         }
-        return response()->json(['message' => 'Checkin confirmado.'], 200);
     }
 
     public function confirmCheckout ($id){
@@ -29,12 +33,22 @@ class ReservaController extends Controller
             return response()->json(['message' => 'ERRO: Reserva não encontrada'], 404);
         } else {
             if ($reserva->checkin_confirmado) {
-                $reserva->checkout_confirmado = true;
-                $reserva->save();
+                if ($reserva->checkout_confirmado) {
+                    return response()->json(['message' => 'Este checkout já foi confirmado.']);
+                }else {
+                    $reserva->checkout_confirmado = true;
+                    $reserva->save();
+                    return response()->json(['message' => 'Checkout confirmado.'], 200);
+                }
             } else {
                 return response()->json(['message' => 'ERRO: Não houve confirmação de checkin.', 400]);
             }
         }
-        return response()->json(['message' => 'Checkout confirmado.'], 200);
     }
+
+    /*
+    public function getById($id){
+        return Reserva::find($id);
+    }
+    */
 }

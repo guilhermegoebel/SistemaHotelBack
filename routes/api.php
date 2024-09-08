@@ -8,5 +8,8 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');;
 
-Route::get('/reserva/checkin/{id}', [ReservaController::class, 'confirmCheckin']);
-Route::get('/reserva/checkout/{id}', [ReservaController::class, 'confirmCheckout']);
+Route::put('/reserva/checkin/{id}', [ReservaController::class, 'confirmCheckin']);
+Route::put('/reserva/checkout/{id}', [ReservaController::class, 'confirmCheckout']);
+
+//Route::get('reserva/{id}', [ReservaController::class, 'getById']); //usando para teste
+
