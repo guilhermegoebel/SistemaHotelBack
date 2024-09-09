@@ -15,8 +15,8 @@ return new class extends Migration
             $table->string('email');
             $table->string('telefone');
             $table->string('cpf');
-            $table->string('data_checkin')->nullable();
-            $table->string('data_checkout')->nullable();
+            $table->date('data_checkin')->nullable();
+            $table->date('data_checkout')->nullable();
             $table->boolean('checkin_confirmado')->default(false);
             $table->boolean('checkout_confirmado')->default(false);
             $table->smallInteger('numero_criancas');
